@@ -1,4 +1,4 @@
-# sql-challenge
+# SQL-challenge
 ## Background
 It’s been two weeks since you were hired as a new data engineer at Pewlett Hackard (a fictional company). Your first major task is to do a research project about people whom the company employed during the 1980s and 1990s. All that remains of the employee database from that period are six CSV files.
 
@@ -27,7 +27,7 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 
 2 - Import each CSV file into its corresponding SQL table.
 
-```PostgreSQL
+#PostgreSQL
 
 CREATE TABLE "departments" (
     "dept_no" varchar(4)   NOT NULL,
@@ -94,23 +94,26 @@ REFERENCES "employees" ("emp_no");
 
 ## Data Analysis
 1. List the employee number, last name, first name, sex, and salary of each employee.
-```PostgreSQL
+
+#PostgreSQL
 
 SELECT e.emp_no, e.last_name, e.first_name, e.sex, s.salary
 FROM employees e
 JOIN salaries s
 ON e.emp_no = s.emp_no;
-```
+
 2. List the first name, last name, and hire date for the employees who were hired in 1986.
-```PostgreSQL
+
+#PostgreSQL
 
 SELECT first_name, last_name, hire_date 
 FROM employees
 WHERE hire_date BETWEEN '1986-1-1' and '1986-12-31'
 ORDER BY hire_date ASC;
-```
+
 3. List the manager of each department along with their department number, department name, employee number, last name, and first name.
-```PostgreSQL
+
+#PostgreSQL
 
 SELECT dm.dept_no, d.dept_name, dm.emp_no, e.last_name, e.first_name 
 FROM dept_manager dm
@@ -119,9 +122,10 @@ ON dm.emp_no = e.emp_no
 JOIN departments d
 ON dm.dept_no = d.dept_no
 ORDER BY d.dept_name ASC;
-```
+
 4. List the department number for each employee along with that employee’s employee number, last name, first name, and department name.
-```PostgreSQL
+
+#PostgreSQL
 
 SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
 FROM employees e
@@ -130,17 +134,19 @@ ON e.emp_no = de.emp_no
 JOIN departments d
 ON d.dept_no = de.dept_no
 ORDER BY d.dept_name ASC;
-```
+
 5. List first name, last name, and sex of each employee whose first name is Hercules and whose last name begins with the letter B.
-```PostgreSQL
+
+#PostgreSQL
 
 SELECT first_name, last_name, sex
 FROM employees 
 WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
 ORDER BY last_name ASC;
-```
+
 6. List each employee in the Sales department, including their employee number, last name, and first name.
-```PostgreSQL
+
+#PostgreSQL
 
 SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
 FROM employees e
@@ -149,9 +155,10 @@ ON e.emp_no = de.emp_no
 JOIN departments d
 ON d.dept_no = de.dept_no
 WHERE d.dept_name = 'Sales';
-```
+
 7. List each employee in the Sales and Development departments, including their employee number, last name, first name, and department name.
-```PostgreSQL
+
+#PostgreSQL
 
 SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
 FROM employees e
@@ -161,15 +168,34 @@ JOIN departments d
 ON d.dept_no = de.dept_no
 WHERE d.dept_name = 'Sales' OR d.dept_name = 'Development'
 ORDER BY d.dept_name ASC;
-```
+
 8. List the frequency counts, in descending order, of all the employee last names (that is, how many employees share each last name).
-```PostgreSQL
+
+#PostgreSQL
 
 SELECT last_name, count(emp_no) as num_employees_with_same_last_name
 FROM employees
 GROUP BY last_name
 ORDER BY num_employees_with_same_last_name DESC;
-```
+
+## Create and employee_database view to be used on Python
+CREATE OR REPLACE VIEW public.employee_database
+ AS
+ SELECT dm.dept_no,
+    d.dept_name,
+    dm.emp_no,
+    e.last_name,
+    e.first_name,
+    e.sex,
+    s.salary
+   FROM dept_manager dm
+     JOIN employees e ON dm.emp_no = e.emp_no
+     JOIN departments d ON dm.dept_no::text = d.dept_no::text
+     JOIN salaries s ON e.emp_no = s.emp_no
+  ORDER BY d.dept_name;
+
+ALTER TABLE public.employee_database
+    OWNER TO postgres;
 
 #Bonus
 
