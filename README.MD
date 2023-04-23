@@ -27,6 +27,7 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 
 2 - Import each CSV file into its corresponding SQL table.
 
+## Codes
 #PostgreSQL
 
 CREATE TABLE "departments" (
@@ -197,7 +198,7 @@ CREATE OR REPLACE VIEW public.employee_database
 ALTER TABLE public.employee_database
     OWNER TO postgres;
 
-#Bonus
+## Bonus
 
 # dependencies and set up
 from sqlalchemy import create_engine
