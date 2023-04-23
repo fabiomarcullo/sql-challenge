@@ -1,4 +1,4 @@
-## SQL-challenge
+# SQL-challenge
 # Background
 It’s been two weeks since you were hired as a new data engineer at Pewlett Hackard (a fictional company). Your first major task is to do a research project about people whom the company employed during the 1980s and 1990s. All that remains of the employee database from that period are six CSV files.
 
@@ -17,18 +17,17 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 ![ ](EmployeeSQL/Diagram/diagrama.png)
 
 # Data Engineering
-	1 - Use the provided information to create a table schema for each of the six CSV files. Be sure to do the following:
-
+**1 - Use the provided information to create a table schema for each of the six CSV files. Be sure to do the following:**
 		- Remember to specify the data types, primary keys, foreign keys, and other constraints.
 
 		- For the primary keys, verify that the column is unique. Otherwise, create a composite keyLinks to an external site., which takes two primary keys to uniquely identify a row.
 
 		- Be sure to create the tables in the correct order to handle the foreign keys.
 
-	2 - Import each CSV file into its corresponding SQL table.
+**2 - Import each CSV file into its corresponding SQL table.**
 
 # Codes
-	#PostgreSQL
+**PostgreSQL**
 
 	CREATE TABLE "departments" (
   	  "dept_no" varchar(4)   NOT NULL,
@@ -94,27 +93,27 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 
 
 # Data Analysis
-	1. List the employee number, last name, first name, sex, and salary of each employee.
+**1. List the employee number, last name, first name, sex, and salary of each employee.**
 
-	#PostgreSQL
+**PostgreSQL**
 
 	SELECT e.emp_no, e.last_name, e.first_name, e.sex, s.salary
 	FROM employees e
 	JOIN salaries s
 	ON e.emp_no = s.emp_no;
 
-	2. List the first name, last name, and hire date for the employees who were hired in 1986.
+**2. List the first name, last name, and hire date for the employees who were hired in 1986.**
 
-	#PostgreSQL
+**PostgreSQL**
 
 	SELECT first_name, last_name, hire_date 
 	FROM employees
 	WHERE hire_date BETWEEN '1986-1-1' and '1986-12-31'
 	ORDER BY hire_date ASC;
 
-	3. List the manager of each department along with their department number, department name, employee number, last name, and first name.
+**3. List the manager of each department along with their department number, department name, employee number, last name, and first name.**
 
-	#PostgreSQL
+**PostgreSQL**
 
 	SELECT dm.dept_no, d.dept_name, dm.emp_no, e.last_name, e.first_name 
 	FROM dept_manager dm
@@ -124,9 +123,9 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 	ON dm.dept_no = d.dept_no
 	ORDER BY d.dept_name ASC;
 
-	4. List the department number for each employee along with that employee’s employee number, last name, first name, and department name.
+**4. List the department number for each employee along with that employee’s employee number, last name, first name, and department name.**
 
-	#PostgreSQL
+**PostgreSQL**
 
 	SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
 	FROM employees e
@@ -136,18 +135,18 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 	ON d.dept_no = de.dept_no
 	ORDER BY d.dept_name ASC;
 
-	5. List first name, last name, and sex of each employee whose first name is Hercules and whose last name begins with the letter B.
+**5. List first name, last name, and sex of each employee whose first name is Hercules and whose last name begins with the letter B.**
 
-	#PostgreSQL
+**PostgreSQL**
 
 	SELECT first_name, last_name, sex
 	FROM employees 
 	WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
 	ORDER BY last_name ASC;
 
-	6. List each employee in the Sales department, including their employee number, last name, and first name.
+**6. List each employee in the Sales department, including their employee number, last name, and first name.**
 
-	#PostgreSQL
+**PostgreSQL**
 
 	SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
 	FROM employees e
@@ -157,9 +156,9 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 	ON d.dept_no = de.dept_no
 	WHERE d.dept_name = 'Sales';
 
-	7. List each employee in the Sales and Development departments, including their employee number, last name, first name, and department name.
+**7. List each employee in the Sales and Development departments, including their employee number, last name, first name, and department name.**
 
-	#PostgreSQL
+**PostgreSQL**
 
 	SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
 	FROM employees e
@@ -170,9 +169,9 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 	WHERE d.dept_name = 'Sales' OR d.dept_name = 'Development'
 	ORDER BY d.dept_name ASC;
 
-	8. List the frequency counts, in descending order, of all the employee last names (that is, how many employees share each last name).
+**8. List the frequency counts, in descending order, of all the employee last names (that is, how many employees share each last name).**
 
-	#PostgreSQL
+**PostgreSQL**
 
 	SELECT last_name, count(emp_no) as num_employees_with_same_last_name
 	FROM employees
@@ -206,7 +205,7 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 	from matplotlib import pyplot as plt
 
 
-# establish connection string
+# Establish connection string
 	engine = create_engine('postgresql://postgres:password@localhost/EmployeeSQL')
 
 # Select employee_database view to create all graphics
@@ -215,7 +214,7 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 # Select departments to create all graphics
 	departments = "SELECT * FROM departments"
 
-#create all df
+# Create all df
 
 	departmentsdf = pd.read_sql(departments, con=engine)
 	employeedf = pd.read_sql(employee, con=engine)
@@ -244,7 +243,7 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 	plt.savefig('images/histogram_salaries.png')
 	plt.show()
 
-![ ](EmployeeSQL/image/histogram_salaries.png)
+![ ](EmployeeSQL/images/histogram_salaries.png)
 
 # Plot Average Salary by Sex and Department
 
@@ -273,21 +272,21 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 	    plt.show()
 
 # Customer Service
-![ ](EmployeeSQL/images/avg_salary_Customer Service.png)
-# Customer Service
+![ ](EmployeeSQL/images/avg_salary_Customer_Service.png)
+# Development
 ![ ](EmployeeSQL/images/avg_salary_Development.png)
-# Customer Service
+# Finance
 ![ ](EmployeeSQL/images/avg_salary_Finance.png)
-# Customer Service
+# Human Resources
 ![ ](EmployeeSQL/images/avg_salary_Human Resources.png)
-# Customer Service
+# Marketing
 ![ ](EmployeeSQL/images/avg_salary_Marketing.png)
-# Customer Service
+# CProduction
 ![ ](EmployeeSQL/images/avg_salary_Production.png)
-# Customer Service
+# Quality Management
 ![ ](EmployeeSQL/images/avg_salary_Quality Management.png)
-# Customer Service
+# Research
 ![ ](EmployeeSQL/images/avg_salary_Research.png)
-# Customer Service
+# Sales
 ![ ](EmployeeSQL/images/avg_salary_Sales.png)
 
