@@ -243,7 +243,7 @@ plt.suptitle('Salary Ranges by Sex')
 plt.savefig('images/histogram_salaries.png')
 plt.show()
 
-![Employees](EmployeeSQL/images/histogram_salaries.png)
+![ ](EmployeeSQL/image/histogram_salaries.png)
 
 ## Plot Average Salary by Sex and Department
 
@@ -271,13 +271,13 @@ for department in departments:
     plt.savefig(f"images/avg_salary_{department}.png")
     plt.show()
 
-![Employees](EmployeeSQL/images/avg_salary_Customer Service.png)
-![Employees](EmployeeSQL/images/avg_salary_Development.png)
-![Employees](EmployeeSQL/images/avg_salary_Finance.png)
-![Employees](EmployeeSQL/images/avg_salary_Human Resources.png)
-![Employees](EmployeeSQL/images/avg_salary_Marketing.png)
-![Employees](EmployeeSQL/images/avg_salary_Production.png)
-![Employees](EmployeeSQL/images/avg_salary_Quality Management.png)
-![Employees](EmployeeSQL/images/avg_salary_Research.png)
-![Employees](EmployeeSQL/images/avg_salary_Sales.png)
+![ ](EmployeeSQL/image//avg_salary_Customer Service.png)
+![ ](EmployeeSQL/image//avg_salary_Development.png)
+![ ](EmployeeSQL/image//avg_salary_Finance.png)
+![ ](EmployeeSQL/image//avg_salary_Human Resources.png)
+![ ](EmployeeSQL/image//avg_salary_Marketing.png)
+![ ](EmployeeSQL/image//avg_salary_Production.png)
+![ ](EmployeeSQL/image//avg_salary_Quality Management.png)
+![ ](EmployeeSQL/image//avg_salary_Research.png)
+![ ](EmployeeSQL/image//avg_salary_Sales.png)
 
