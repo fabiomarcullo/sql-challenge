@@ -278,13 +278,13 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 # Finance
 ![ ](EmployeeSQL/images/avg_salary_Finance.png)
 # Human Resources
-![ ](EmployeeSQL/images/avg_salary_Human Resources.png)
+![ ](EmployeeSQL/images/avg_salary_Human_Resources.png)
 # Marketing
 ![ ](EmployeeSQL/images/avg_salary_Marketing.png)
-# CProduction
+# Production
 ![ ](EmployeeSQL/images/avg_salary_Production.png)
 # Quality Management
-![ ](EmployeeSQL/images/avg_salary_Quality Management.png)
+![ ](EmployeeSQL/images/avg_salary_Quality_Management.png)
 # Research
 ![ ](EmployeeSQL/images/avg_salary_Research.png)
 # Sales
