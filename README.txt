@@ -14,7 +14,7 @@ This research project consists of designing the tables that will hold the CSV da
 ## Data Modeling
 Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tables. To create the sketch, feel free to use a tool like QuickDBD
 
-![.](EmployeeSQL/Diagram/diagrama.PNG)
+![ ](EmployeeSQL/Diagram/diagrama.PNG)
 
 ## Data Engineering
 1 - Use the provided information to create a table schema for each of the six CSV files. Be sure to do the following:
